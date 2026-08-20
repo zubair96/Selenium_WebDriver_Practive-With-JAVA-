@@ -1,18 +1,28 @@
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 
+
+
 public class Scroll_Screenshot {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		WebDriver cDriver= new ChromeDriver();
 		cDriver.get("https://rahulshettyacademy.com/AutomationPractice/");
+		File src= ((TakesScreenshot)cDriver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(src,new File("C://Users/zubai/eclipse-workspace/Introduction/screenshot.png"));
+		
 				cDriver.manage().window().maximize();
 				
 				JavascriptExecutor js = (JavascriptExecutor) cDriver;
@@ -28,8 +38,7 @@ public class Scroll_Screenshot {
 			
 			sum=sum+ Integer.parseInt(value.get(i).getText());
 					
-					
-				
+									
 	}
 	int actualValue=Integer.parseInt(cDriver.findElement(By.cssSelector(".totalAmount")).getText().split(":")[1].trim());
 			Assert.assertEquals(sum, actualValue);
@@ -40,15 +49,19 @@ public class Scroll_Screenshot {
 			
 			for(int i= 0;i<product.size();i++){
 			
-			sum2=sum2+ Integer.parseInt(product.get(i).getText());
+			sum2=sum2+ Integer.parseInt(product.get(i).getText());			}
 			
-
-					
-					
-				
-	}
-
+			
 			System.out.println(sum2);
+			File src1= ((TakesScreenshot)cDriver).getScreenshotAs(OutputType.FILE);
+			FileUtils.copyFile(src1,new File("C://Users//zubai//eclipse-workspace//Introduction//screenshot1.png"));
 			
 	}
+	
 }
+			
+			
+
+			
+			
+	
